@@ -3,140 +3,1144 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AI 체험 부스 · 우리가 만든 게임</title>
+<title>2026 충북 AI 페스티벌 · AI 체험 부스</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Jua&family=Noto+Sans+KR:wght@500;700;900&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@400;500;600;700;800;900&family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 <style>
-:root{--ink:#1c2340;--sub:#66709a;--line:#e4e8f6;--pri:#4f5bd5;--gold:#ffb81f}
-*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
-html,body{margin:0}
-body{font-family:'Noto Sans KR',system-ui,sans-serif;font-weight:700;color:var(--ink);min-height:100vh;
-  background:radial-gradient(900px 600px at 0% 0%,#dff3ff,transparent 60%),radial-gradient(900px 600px at 100% 0%,#ffe9f1,transparent 60%),radial-gradient(900px 700px at 50% 100%,#fff4cf,transparent 60%),#f6f8ff;
-  padding:clamp(14px,2.6vh,30px) clamp(14px,3vw,44px) 40px}
-button{font:inherit;color:inherit;border:0;cursor:pointer;background:none}
-a{color:inherit;text-decoration:none}
-.jua{font-family:'Jua','Noto Sans KR',sans-serif;font-weight:400}
-.wrap{max-width:1500px;margin:0 auto}
-header{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:14px}
-.chip{display:inline-block;background:#fff4cf;color:#9a6a00;padding:6px 16px;border-radius:99px;font-size:15px}
-h1{margin:6px 0 4px;font-size:clamp(34px,5vw,64px);line-height:1.08;color:var(--pri)}
-h1 em{font-style:normal;color:#ff5d8f}
-.lead{margin:0;color:var(--sub);font-weight:500;font-size:clamp(14px,1.5vw,19px)}
-.side{display:flex;gap:10px;flex-wrap:wrap}
-.btn{border-radius:18px;padding:13px 20px;font-weight:900;font-size:17px;background:#fff;box-shadow:0 5px 0 #d5d9ee;transition:transform .07s,box-shadow .07s;display:inline-block}
-.btn:active{transform:translateY(4px);box-shadow:0 1px 0 #d5d9ee}
-.btn.gold{background:linear-gradient(135deg,#ffd35c,#ffa41f);color:#4a2c00;box-shadow:0 5px 0 #d98200}
-.btn.on{background:var(--pri);color:#fff;box-shadow:0 5px 0 #3a3fa8}
-.filters{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0 16px}
-.f{padding:9px 18px;border-radius:99px;background:#fff;border:2px solid var(--line);font-size:15.5px;transition:all .12s}
-.f.on{background:var(--ink);color:#fff;border-color:var(--ink)}
-.f small{opacity:.6;margin-left:4px;font-weight:700}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:16px}
-.card{position:relative;display:flex;flex-direction:column;background:#fff;border-radius:26px;overflow:hidden;box-shadow:0 10px 26px rgba(60,70,140,.13);border:2px solid #fff;transition:transform .12s,box-shadow .12s}
-.card:hover{transform:translateY(-4px);box-shadow:0 16px 34px rgba(60,70,140,.2)}
-.card:active{transform:translateY(2px)}
-.top{position:relative;height:118px;display:grid;place-items:center;font-size:64px;color:#fff}
-.top span{filter:drop-shadow(0 6px 10px rgba(0,0,0,.25));transition:transform .2s}
-.card:hover .top span{transform:scale(1.12) rotate(-5deg)}
-.subj{position:absolute;top:10px;left:10px;font-size:12.5px;background:rgba(255,255,255,.92);color:var(--ink);padding:3px 11px;border-radius:99px}
-.body{padding:13px 16px 15px;display:flex;flex-direction:column;gap:7px;flex:1}
-.body h2{margin:0;font-size:23px;line-height:1.2}
-.body p{margin:0;color:var(--sub);font-weight:500;font-size:14.5px;line-height:1.5;flex:1}
-.tags{display:flex;gap:6px;flex-wrap:wrap}
-.tag{font-size:12.5px;padding:3px 10px;border-radius:9px;background:#f0f2fb;color:#4a5380}
-.tag.rank{background:#fff4cf;color:#9a6a00}.tag.multi{background:#e3f6ff;color:#07679a}
-.go{margin-top:4px;text-align:center;border-radius:14px;padding:10px;color:#fff;font-size:17px}
-.qrbox{position:absolute;inset:0;background:rgba(255,255,255,.97);display:none;flex-direction:column;align-items:center;justify-content:center;gap:8px;padding:12px;text-align:center}
-.qrbox div{width:170px;height:170px}.qrbox div img,.qrbox div canvas{width:100%!important;height:100%!important}
-.qrbox b{font-size:19px}.qrbox small{color:var(--sub);font-weight:500;font-size:13px}
-body.qr .qrbox{display:flex}
-.card.hide{display:none}
-footer{margin-top:22px;text-align:center;color:var(--sub);font-weight:500;font-size:14px;line-height:1.7}
-.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:16px}
-.step{background:rgba(255,255,255,.8);border:2px solid var(--line);border-radius:18px;padding:11px 14px;font-size:14.5px;color:var(--sub);font-weight:500}
-.step b{display:block;color:var(--ink);font-size:17px}
-@media (max-width:720px){.steps{grid-template-columns:1fr}}
+:root {
+  --bg: #f3f5f9;
+  --surface: #ffffff;
+  --ink: #111827;
+  --sub: #4b5563;
+  --muted: #6b7280;
+  --line: #e5e7eb;
+  --primary: #2563eb;
+  --primary-soft: #eff6ff;
+  --gold: #f59e0b;
+  --radius-card: 20px;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Pretendard', 'Noto Sans KR', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  background-color: var(--bg);
+  color: var(--ink);
+  min-height: 100vh;
+  line-height: 1.45;
+  word-break: keep-all;
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button, input {
+  font: inherit;
+  color: inherit;
+  border: 0;
+  background: none;
+}
+
+button {
+  cursor: pointer;
+}
+
+/* Sticky Booth Kiosk Header */
+.kiosk-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--line);
+}
+
+.header-inner {
+  max-width: 1560px;
+  margin: 0 auto;
+  padding: 14px clamp(16px, 2.5vw, 36px);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.brand-group {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.brand-mark {
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #2563eb, #4f46e5);
+  color: #ffffff;
+  display: grid;
+  place-items: center;
+  font-size: 20px;
+  font-weight: 900;
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.25);
+  flex-shrink: 0;
+}
+
+.brand-titles {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.brand-sub {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--primary);
+  letter-spacing: -0.01em;
+}
+
+.brand-main {
+  margin: 0;
+  font-size: clamp(18px, 1.6vw, 22px);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: var(--ink);
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.live-stat-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 8px 13px;
+  border-radius: 99px;
+  background: #f8fafc;
+  border: 1px solid var(--line);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--sub);
+}
+
+.live-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #10b981;
+  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.18);
+}
+
+.live-stat-pill b {
+  color: var(--ink);
+  font-weight: 800;
+}
+
+.kiosk-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  height: 40px;
+  padding: 0 16px;
+  border-radius: 11px;
+  font-size: 14px;
+  font-weight: 700;
+  border: 1px solid var(--line);
+  background: #ffffff;
+  color: var(--ink);
+  transition: all 0.15s ease;
+}
+
+.kiosk-btn:hover {
+  background: #f9fafb;
+  border-color: #cbd5e1;
+  transform: translateY(-1px);
+}
+
+.kiosk-btn.active {
+  background: var(--ink);
+  color: #ffffff;
+  border-color: var(--ink);
+}
+
+.kiosk-btn.rank {
+  background: linear-gradient(135deg, #fbbf24, #f59e0b);
+  border-color: transparent;
+  color: #111827;
+  font-weight: 800;
+  box-shadow: 0 4px 12px rgba(245, 158, 11, 0.28);
+}
+
+.kiosk-btn.rank:hover {
+  filter: brightness(1.03);
+  box-shadow: 0 6px 16px rgba(245, 158, 11, 0.38);
+}
+
+/* Main Workspace */
+.container {
+  max-width: 1560px;
+  margin: 0 auto;
+  padding: 20px clamp(16px, 2.5vw, 36px) 56px;
+}
+
+/* Subbar: Category Tabs + Search */
+.toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+.filters {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  flex-wrap: wrap;
+}
+
+.filter-tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 38px;
+  padding: 0 15px;
+  border-radius: 99px;
+  font-size: 14px;
+  font-weight: 700;
+  background: #ffffff;
+  color: var(--sub);
+  border: 1px solid var(--line);
+  transition: all 0.14s ease;
+}
+
+.filter-tab:hover {
+  border-color: #cbd5e1;
+  color: var(--ink);
+}
+
+.filter-tab.on {
+  background: var(--ink);
+  color: #ffffff;
+  border-color: var(--ink);
+  box-shadow: 0 4px 10px rgba(17, 24, 39, 0.15);
+}
+
+.filter-tab span {
+  font-size: 12px;
+  font-weight: 800;
+  opacity: 0.65;
+}
+
+.search-wrap {
+  position: relative;
+  min-width: 230px;
+  flex: 0 1 280px;
+}
+
+.search-wrap input {
+  width: 100%;
+  height: 38px;
+  padding: 0 14px 0 36px;
+  border-radius: 99px;
+  background: #ffffff;
+  border: 1px solid var(--line);
+  font-size: 13.5px;
+  font-weight: 500;
+  color: var(--ink);
+  outline: none;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+.search-wrap input:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+}
+
+.search-ico {
+  position: absolute;
+  left: 13px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 13px;
+  color: var(--muted);
+  pointer-events: none;
+}
+
+/* 4-Column Game Launcher Grid */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 20px;
+}
+
+.game-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  background: var(--surface);
+  border-radius: var(--radius-card);
+  border: 1px solid var(--line);
+  overflow: hidden;
+  box-shadow: 0 4px 14px rgba(17, 24, 39, 0.04);
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.game-card:hover {
+  transform: translateY(-5px);
+  border-color: #93c5fd;
+  box-shadow: 0 18px 36px -10px rgba(17, 24, 39, 0.13);
+}
+
+.game-card:active {
+  transform: translateY(-1px);
+}
+
+.game-card.hide {
+  display: none;
+}
+
+/* Top Real Screenshot Preview Frame */
+.thumb-wrap {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  background: #0f172a;
+  overflow: hidden;
+  border-bottom: 1px solid var(--line);
+}
+
+.thumb-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+  transition: transform 0.32s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.game-card:hover .thumb-wrap img {
+  transform: scale(1.04);
+}
+
+/* Floating Badges on Thumbnail */
+.thumb-badges {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  right: 10px;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  pointer-events: none;
+}
+
+.badge-num {
+  padding: 4px 9px;
+  border-radius: 8px;
+  background: rgba(17, 24, 39, 0.78);
+  backdrop-filter: blur(6px);
+  color: #ffffff;
+  font-size: 11.5px;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+}
+
+.badge-players {
+  padding: 4px 10px;
+  border-radius: 99px;
+  background: rgba(255, 255, 255, 0.94);
+  backdrop-filter: blur(6px);
+  color: #111827;
+  font-size: 12px;
+  font-weight: 800;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.14);
+}
+
+.badge-players.multi {
+  background: #fef08a;
+  color: #713f12;
+}
+
+.play-hover-pill {
+  position: absolute;
+  right: 12px;
+  bottom: 12px;
+  z-index: 2;
+  padding: 7px 14px;
+  border-radius: 99px;
+  background: var(--primary);
+  color: #ffffff;
+  font-size: 13px;
+  font-weight: 800;
+  box-shadow: 0 6px 16px rgba(37, 99, 235, 0.4);
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity 0.18s ease, transform 0.18s ease;
+}
+
+.game-card:hover .play-hover-pill {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Inline QR Layer when "QR 코드 보기" mode is toggled */
+.inline-qr-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  background: rgba(255, 255, 255, 0.96);
+  backdrop-filter: blur(6px);
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.inline-qr-box {
+  width: 138px;
+  height: 138px;
+  padding: 8px;
+  background: #ffffff;
+  border-radius: 14px;
+  border: 1px solid var(--line);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+}
+
+.inline-qr-box img, .inline-qr-box canvas {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.inline-qr-overlay span {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--sub);
+}
+
+body.qr-all .inline-qr-overlay {
+  display: flex;
+}
+
+/* Card Body */
+.card-body {
+  padding: 15px 17px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex: 1;
+}
+
+.card-head-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.title-group {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  min-width: 0;
+}
+
+.subj-chip {
+  font-size: 11.5px;
+  font-weight: 800;
+  padding: 2.5px 8px;
+  border-radius: 6px;
+  flex-shrink: 0;
+}
+
+.card-title {
+  margin: 0;
+  font-size: 17px;
+  font-weight: 800;
+  letter-spacing: -0.025em;
+  color: var(--ink);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.qr-icon-btn {
+  width: 30px;
+  height: 30px;
+  border-radius: 8px;
+  background: #f3f4f6;
+  color: var(--sub);
+  display: grid;
+  place-items: center;
+  font-size: 12px;
+  font-weight: 800;
+  flex-shrink: 0;
+  transition: background 0.14s, color 0.14s;
+}
+
+.qr-icon-btn:hover {
+  background: var(--ink);
+  color: #ffffff;
+}
+
+.card-desc {
+  margin: 0;
+  font-size: 13.5px;
+  color: var(--sub);
+  line-height: 1.48;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  flex: 1;
+}
+
+/* Optional "이렇게 체험해 보세요" Tip Box */
+.card-tip {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  padding: 7px 10px;
+  font-size: 12px;
+  color: #334155;
+  line-height: 1.42;
+}
+
+.card-tip b {
+  color: var(--primary);
+  font-weight: 800;
+  margin-right: 4px;
+}
+
+/* Live Top 1 Mini Footer inside Card */
+.card-rank-bar {
+  margin-top: 2px;
+  padding-top: 9px;
+  border-top: 1px solid #f1f5f9;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  font-size: 12px;
+}
+
+.rank-who {
+  color: var(--muted);
+  font-weight: 600;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.rank-who b {
+  color: var(--ink);
+  font-weight: 800;
+}
+
+.rank-val {
+  color: #d97706;
+  font-weight: 800;
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Single QR Modal */
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.55);
+  backdrop-filter: blur(4px);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 300;
+  padding: 20px;
+}
+
+.modal-backdrop.open {
+  display: flex;
+}
+
+.modal-card {
+  background: #ffffff;
+  border-radius: 22px;
+  padding: 26px 24px 22px;
+  max-width: 310px;
+  width: 100%;
+  text-align: center;
+  box-shadow: 0 24px 48px rgba(0, 0, 0, 0.2);
+}
+
+.modal-card h3 {
+  margin: 0 0 4px;
+  font-size: 18px;
+  font-weight: 800;
+}
+
+.modal-card p {
+  margin: 0 0 16px;
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.modal-qr {
+  width: 184px;
+  height: 184px;
+  margin: 0 auto 18px;
+  padding: 10px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+}
+
+.modal-qr img, .modal-qr canvas {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.modal-close {
+  width: 100%;
+  height: 40px;
+  border-radius: 10px;
+  background: #f3f4f6;
+  color: var(--ink);
+  font-weight: 700;
+  font-size: 14px;
+}
+
+.modal-close:hover {
+  background: #e5e7eb;
+}
+
+@media (max-width: 720px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+  .search-wrap {
+    flex: 1 1 100%;
+  }
+}
 </style>
 </head>
 <body>
-<div class="wrap">
-  <header>
-    <div>
-      <span class="chip">🎪 2026 충북 AI 페스티벌 · AI 체험 부스</span>
-      <h1 class="jua">우리가 만든 <em>게임 <span id="total">13</span>개</em>, 골라서 해 보세요!</h1>
-      <p class="lead">초등학생 친구들이 AI와 함께 직접 만든 웹앱이에요. 마음에 드는 카드를 누르면 바로 시작돼요.</p>
+
+<header class="kiosk-header">
+  <div class="header-inner">
+    <a class="brand-group" href="./">
+      <div class="brand-mark">AI</div>
+      <div class="brand-titles">
+        <span class="brand-sub">2026 충북 AI 페스티벌 · 청주소로초 디지털 마스터</span>
+        <h1 class="brand-main">우리가 만든 AI 웹앱 &amp; 게임 <span id="totalTitleCount">16</span>선</h1>
+      </div>
+    </a>
+    <div class="header-right">
+      <div class="live-stat-pill">
+        <span class="live-dot"></span>
+        <span>오늘 부스 도전 <b id="todayTotalPlays">0</b>회</span>
+      </div>
+      <button type="button" class="kiosk-btn" id="qrModeBtn" onclick="toggleAllQR()">
+        <span>📱</span>
+        <span>전체 QR 코드</span>
+      </button>
+      <a class="kiosk-btn rank" id="rankBtn" href="./leaderboard/">
+        <span>🏆</span>
+        <span>오늘의 랭킹 보드</span>
+      </a>
     </div>
-    <div class="side">
-      <a class="btn gold" href="https://moodoocoding.github.io/261123_booth-leaderboard/">🏆 오늘의 랭킹</a>
-      <button class="btn" id="qrBtn" onclick="toggleQR()">📱 내 휴대전화로 하기 (QR)</button>
-    </div>
-  </header>
-  <div class="steps">
-    <div class="step"><b>① 게임 고르기</b>과목이나 인원수로 골라 볼 수 있어요.</div>
-    <div class="step"><b>② 이름 적고 도전</b>🏆 표시가 있는 게임은 기록이 오늘의 랭킹에 올라가요.</div>
-    <div class="step"><b>③ 랭킹 확인</b>TV 화면에서 내 이름을 찾아보세요!</div>
   </div>
-  <div class="filters" id="filters"></div>
+</header>
+
+<main class="container">
+  <div class="toolbar">
+    <div class="filters" id="filters"></div>
+    <div class="search-wrap">
+      <span class="search-ico">🔍</span>
+      <input type="search" id="searchInput" placeholder="게임·웹앱 이름 또는 분류 검색…" oninput="onSearch(this.value)">
+    </div>
+  </div>
+
   <div class="grid" id="grid"></div>
-  <footer>게임을 하다가 이 화면으로 돌아오려면 브라우저의 ← 뒤로 가기를 누르세요.<br>모든 게임은 학생이 만든 원작의 아이디어를 살려 다듬었습니다.</footer>
+</main>
+
+<!-- 개별 QR 모달 -->
+<div class="modal-backdrop" id="qrModal" onclick="closeModal()">
+  <div class="modal-card" onclick="event.stopPropagation()">
+    <h3 id="modalTitle">게임 이름</h3>
+    <p>휴대전화 카메라로 스캔하면 바로 시작됩니다</p>
+    <div class="modal-qr" id="modalQRBox"></div>
+    <button type="button" class="modal-close" onclick="closeModal()">닫기</button>
+  </div>
 </div>
 
+<script src="./board.js" onerror="window.__noLocalBoard=true"></script>
 <script>
-// 부스 게임 목록: 여기에 한 줄을 더하면 카드가 늘어나요
-// [아이콘, 이름, 한 줄 소개, 분류, 인원, 랭킹 여부, 주소, 색 두 가지]
-const GAMES = [
- ['✏️','띄어쓰기 1등은 누구?','글자 사이를 눌러 알맞게 띄어 써요. 화면을 나눠 최대 4명이 동시에 겨뤄요.','국어','1~4명',1,'https://moodoocoding.github.io/261123_spacing-champion/','#ff8a5c','#ff5d8f'],
- ['🥋','수학격투','곱셈 문제를 풀어 필살기를 날리는 격투 게임. 둘이서 화면을 나눠 대결할 수 있어요.','수학','1~2명',1,'https://moodoocoding.github.io/261123_math-fighter/','#ffb23c','#f0561f'],
- ['🏰','구구단 가디언즈','구구단을 맞혀 금화를 모으고 탑을 세워 성을 지키는 타워 디펜스.','수학','1명',1,'https://261123-gugudan-guardians.vercel.app/','#8a7bff','#4f5bd5'],
- ['🚀','우주정복자','태양계 여덟 행성을 돌며 퀴즈를 풀고 우주정복자 임명장을 받아요.','과학','1명',1,'https://moodoocoding.github.io/261123_space-conqueror/','#3a2f8f','#0f1440'],
- ['🌤️','꼬마 기상청장','해, 비, 눈, 바람을 직접 바꿔 보며 날씨를 알아보는 시뮬레이터.','과학','1명',0,'https://moodoocoding.github.io/261123_weather-simulator/','#5cc8ff','#3d8bff'],
- ['🗺️','나라 수도 맞추기','세계 50개 나라의 사진과 국기를 보고 수도를 맞히는 퀴즈.','사회','1명',1,'https://moodoocoding.github.io/261123_capital-quiz/','#34d399','#0ea5a0'],
- ['🎤','트리플 퀴즈 쇼','상식, 연산, 아재개그 세 라운드 퀴즈 쇼. 둘이서 빨리 맞히기 대결도 돼요.','퀴즈','1~2명',1,'https://moodoocoding.github.io/261123_triple-quiz-show/','#ff6fb1','#b44dff'],
- ['🏃','퀴즈 & 점프 런너','장애물을 뛰어넘고 퀴즈를 맞혀 부스트! 최대 4명이 동시에 달려요.','퀴즈','1~4명',1,'https://moodoocoding.github.io/261123_quiz-runner/','#ff9a3d','#e0452f'],
- ['🧠','브레인 대시','색깔 판별, 암산, 기억력 게임을 20초씩! 딱 1분 두뇌 트레이닝.','두뇌','1명',1,'https://moodoocoding.github.io/261123_brain-dash/','#3de0ff','#7a5cff'],
- ['🧩','블록 퍼즐 챔피언','8×8 판에 블록을 놓아 줄을 맞춰 지우는 퍼즐.','두뇌','1명',1,'https://moodoocoding.github.io/261123_block-puzzle/','#7dd87d','#2aa46b'],
- ['🪢','휙휙! 로프 스윙','로프를 걸고 휙휙 날아서 다섯 스테이지를 건너가요.','액션','1명',1,'https://moodoocoding.github.io/261123_rope-swing/','#5ad1c0','#2a7fd6'],
- ['🎧','비트스매시 클럽','음악에 맞춰 떨어지는 노트를 딱 맞게 누르는 리듬 게임.','액션','1명',1,'https://moodoocoding.github.io/261123_beat-smash/','#ff5dc8','#6a3dff'],
- ['⚡','택티컬 코어 디펜스','몰려오는 드론을 막아 코어를 지키는 슈팅 게임. 10 웨이브에 도전!','액션','1명',1,'https://moodoocoding.github.io/261123_core-defense/','#1fd4ff','#1b3a8f']
-].map(a=>({ico:a[0],name:a[1],desc:a[2],subj:a[3],players:a[4],rank:!!a[5],url:a[6],c1:a[7],c2:a[8]}));
+const IS_GITHUB = location.hostname.endsWith('github.io');
+document.getElementById('rankBtn').href = IS_GITHUB
+  ? 'https://moodoocoding.github.io/261123_booth-leaderboard/'
+  : './leaderboard/';
 
-const $ = id=>document.getElementById(id);
-$('total').textContent = GAMES.length;
-const FILTERS = [['all','전체',()=>true],...[...new Set(GAMES.map(g=>g.subj))].map(s=>[s,s,g=>g.subj===s]),['multi','👫 여럿이 함께',g=>g.players!=='1명']];
-let cur = 'all';
-function renderFilters(){
-  $('filters').innerHTML = FILTERS.map(([k,label,fn])=>`<button class="f ${k===cur?'on':''}" onclick="setFilter('${k}')">${label}<small>${GAMES.filter(fn).length}</small></button>`).join('');
-}
-function setFilter(k){
-  cur = k; renderFilters();
-  const fn = FILTERS.find(f=>f[0]===k)[2];
-  document.querySelectorAll('.card').forEach((c,i)=>c.classList.toggle('hide',!fn(GAMES[i])));
-  try{ localStorage.setItem('booth-home-filter',k); }catch(e){}
-}
-$('grid').innerHTML = GAMES.map((g,i)=>`<a class="card" href="${g.url}">
-  <div class="top" style="background:linear-gradient(135deg,${g.c1},${g.c2})"><span>${g.ico}</span><b class="subj">${g.subj}</b></div>
-  <div class="body">
-    <h2 class="jua">${g.name}</h2><p>${g.desc}</p>
-    <div class="tags"><span class="tag ${g.players!=='1명'?'multi':''}">👤 ${g.players}</span>${g.rank?'<span class="tag rank">🏆 오늘의 랭킹</span>':''}</div>
-    <div class="go jua" style="background:linear-gradient(135deg,${g.c1},${g.c2})">시작하기 ▶</div>
-  </div>
-  <div class="qrbox"><b class="jua">${g.ico} ${g.name}</b><div id="qr${i}"></div><small>휴대전화 카메라로 찍어 보세요</small></div>
-</a>`).join('');
-// QR 보기: 켜면 카드마다 QR 코드가 나와요 (처음 켤 때 한 번만 그려요)
-let qrMade = false;
-function toggleQR(){
-  if(!qrMade){
-    qrMade = true;
-    GAMES.forEach((g,i)=>{ try{ new QRCode($('qr'+i),{text:g.url,width:340,height:340,colorDark:'#111827',colorLight:'#ffffff',correctLevel:QRCode.CorrectLevel.M}); }catch(e){ $('qr'+i).textContent = g.url; } });
+const SUBJ_STYLE = {
+  '창작': { bg: '#fce7f3', fg: '#db2777' },
+  '소통': { bg: '#dbeafe', fg: '#1d4ed8' },
+  '국어': { bg: '#ffe4e6', fg: '#e11d48' },
+  '수학': { bg: '#fef3c7', fg: '#d97706' },
+  '과학': { bg: '#e0f2fe', fg: '#0284c7' },
+  '사회': { bg: '#d1fae5', fg: '#059669' },
+  '퀴즈': { bg: '#fae8ff', fg: '#9333ea' },
+  '두뇌': { bg: '#e0e7ff', fg: '#4f46e5' },
+  '액션': { bg: '#fee2e2', fg: '#dc2626' }
+};
+
+// 16개 웹앱 & 게임 목록 (실제 첫 화면 캡처 썸네일 + 체험 팁 + 실시간 랭킹 연동)
+const GAMES = [
+  {
+    id: 'mongle',
+    name: '몽글몽글 그림일기',
+    desc: '색연필, 형광펜, 도형과 도장으로 그림을 그리고 이야기를 남기는 앱입니다. 완성한 일기는 파일로 저장할 수 있어요.',
+    tip: '기억에 남는 장면을 그리고 제목과 짧은 이야기를 붙여 저장해 보세요.',
+    subj: '창작',
+    players: '1명',
+    slug: null,
+    extUrl: 'https://mongle-picture-diary.vercel.app/',
+    col: null,
+    tagLabel: '🎨 그림일기 창작 & 파일 저장'
+  },
+  {
+    id: 'question',
+    name: '질문 모아 주세요',
+    desc: '항상 똑같은 질문에 지쳐가는 우리 선생님을 위한 공간! 궁금한 것을 자유롭게 질문하고 공감해 보세요.',
+    tip: '질문을 남기거나 친구 질문에 공감(✋)을 누르고 선생님 답변을 확인해 보세요.',
+    subj: '소통',
+    players: '여럿이 함께',
+    slug: null,
+    extUrl: 'https://261122-question-box.vercel.app/',
+    col: null,
+    tagLabel: '🙋 우리 반 실시간 질문 & 공감'
+  },
+  {
+    id: 'stairs',
+    name: '무한의 계단',
+    desc: '휴대폰·태블릿을 좌우로 기울여 계단을 오르는 게임입니다. 방향을 살피며 한 계단씩 최고 기록에 도전하세요!',
+    tip: '‘게임 시작’ 후 기기를 편하게 잡고 잠시 멈춰 자세를 맞춘 뒤 좌우로 기울여 보세요.',
+    subj: '액션',
+    players: '1명 · 모바일/태블릿',
+    slug: null,
+    extUrl: 'https://2026-11-23-infinite-stairs-tilt.vercel.app/',
+    col: null,
+    tagLabel: '🏃 기울기 센서 액션 · 세계 공용 순위표'
+  },
+  {
+    id: 'spacing',
+    name: '띄어쓰기 1등은 누구?',
+    desc: '글자 사이를 눌러 알맞게 띄어 써요. 한 화면을 나눠 최대 4명이 동시에 스피드 대결을 펼칩니다.',
+    tip: '인원(1~4명)과 별명을 적고, 띄어 써야 할 글자 사이(∨)를 터치해 제출하세요.',
+    subj: '국어',
+    players: '1~4명',
+    slug: 'spacing-champion',
+    extUrl: 'https://moodoocoding.github.io/261123_spacing-champion/',
+    col: 'spacing',
+    sortFn: (a, b) => (b.c / b.n - a.c / a.n) || (b.c - a.c) || (a.t - b.t),
+    fmtScore: r => `${r.c}/${r.n}문제 (${Math.round(r.c / r.n * 100)}%)`
+  },
+  {
+    id: 'fight',
+    name: '수학격투',
+    desc: '곱셈 문제를 빠르게 풀어 필살기를 날리는 격투 게임! 1인 도전과 2인 화면 분할 대결을 지원합니다.',
+    tip: '‘부스 도전’에서 3명을 연달아 이겨 랭킹에 오르거나, ‘2인 대결’로 친구와 겨뤄 보세요.',
+    subj: '수학',
+    players: '1~2명',
+    slug: 'math-fighter',
+    extUrl: 'https://moodoocoding.github.io/261123_math-fighter/',
+    col: 'fight',
+    sortFn: (a, b) => b.score - a.score || a.t - b.t,
+    fmtScore: r => `${Number(r.score).toLocaleString('ko-KR')}점`
+  },
+  {
+    id: 'gugudan',
+    name: '구구단 가디언즈',
+    desc: '구구단을 맞혀 금화를 모으고 타워를 세워 몰려오는 적으로부터 성을 지키는 타워 디펜스.',
+    tip: '구구단 3문제를 풀어 골드를 모으고, 빈터에 타워를 세운 뒤 웨이브 전투를 시작하세요.',
+    subj: '수학',
+    players: '1명',
+    slug: null,
+    extUrl: 'https://261123-gugudan-guardians.vercel.app/',
+    col: 'gugudan',
+    fmtScore: r => `${Number(r.score).toLocaleString('ko-KR')}점`
+  },
+  {
+    id: 'space',
+    name: '우주정복자',
+    desc: '태양계 8개 행성을 탐험하며 과학 퀴즈를 풀고 모두 정복하면 우주정복자 임명장을 받아요.',
+    tip: '돌아가는 행성을 눌러 정보 카드를 읽고, 퀴즈 3문제를 맞혀 8개 행성에 깃발을 꽂으세요.',
+    subj: '과학',
+    players: '1명',
+    slug: 'space-conqueror',
+    extUrl: 'https://moodoocoding.github.io/261123_space-conqueror/',
+    col: 'space',
+    sortFn: (a, b) => (a.t + a.wrong * 10000) - (b.t + b.wrong * 10000),
+    fmtScore: r => {
+      const s = Math.round((r.t + r.wrong * 10000) / 1000);
+      return s >= 60 ? `${Math.floor(s / 60)}분 ${s % 60}초` : `${s}초`;
+    }
+  },
+  {
+    id: 'weather',
+    name: '꼬마 기상청장',
+    desc: '해, 비, 눈, 바람, 폭풍을 직접 조합해 날씨를 바꾸고 캐릭터 반응과 날씨 도감을 완성해요.',
+    tip: '오른쪽 날씨 버튼을 바꾸고 아래쪽 캐릭터와 물체를 놓아 9가지 날씨 도감을 완성하세요.',
+    subj: '과학',
+    players: '1명',
+    slug: 'weather-simulator',
+    extUrl: 'https://moodoocoding.github.io/261123_weather-simulator/',
+    col: null,
+    tagLabel: '🌤️ 자유 체험 시뮬레이터'
+  },
+  {
+    id: 'capital',
+    name: '나라 수도 맞추기',
+    desc: '세계 50개 나라의 실제 풍경 사진과 국기를 보고 수도를 맞히는 세계 지리 퀴즈.',
+    tip: '‘10문제 도전’을 골라 사진과 국기를 보고 수도를 맞혀 보세요. 힌트 없이 맞히면 100점!',
+    subj: '사회',
+    players: '1명',
+    slug: 'capital-quiz',
+    extUrl: 'https://moodoocoding.github.io/261123_capital-quiz/',
+    col: 'capital',
+    filterFn: r => r.n === 10,
+    sortFn: (a, b) => b.s - a.s || a.t - b.t,
+    fmtScore: r => `${Number(r.s).toLocaleString('ko-KR')}점`
+  },
+  {
+    id: 'quiz',
+    name: '트리플 퀴즈 쇼',
+    desc: '상식, 스피드 연산, 아재개그 3라운드 퀴즈 쇼! 친구와 둘이서 빨리 맞히기 대결도 가능해요.',
+    tip: '‘부스 도전’으로 3라운드 12문제를 연속으로 풀거나, ‘2인 대결’로 친구와 빨리 맞히기를 해 보세요.',
+    subj: '퀴즈',
+    players: '1~2명',
+    slug: 'triple-quiz-show',
+    extUrl: 'https://moodoocoding.github.io/261123_triple-quiz-show/',
+    col: 'quiz',
+    sortFn: (a, b) => b.score - a.score || a.t - b.t,
+    fmtScore: r => `${Number(r.score).toLocaleString('ko-KR')}점`
+  },
+  {
+    id: 'runner',
+    name: '퀴즈 & 점프 런너',
+    desc: '장애물을 뛰어넘고 상식 퀴즈를 맞혀 부스트! 한 화면에서 최대 4명이 동시에 달립니다.',
+    tip: '점프 버튼(또는 W/Space)으로 장애물을 넘고, 화면의 1·2·3번 보기를 골라 부스트로 질주하세요.',
+    subj: '퀴즈',
+    players: '1~4명',
+    slug: 'quiz-runner',
+    extUrl: 'https://moodoocoding.github.io/261123_quiz-runner/',
+    col: 'runner',
+    sortFn: (a, b) => a.t - b.t,
+    fmtScore: r => `${(r.t / 1000).toFixed(2)}초`
+  },
+  {
+    id: 'brain',
+    name: '브레인 대시',
+    desc: '색깔 판별, 스피드 암산, 패턴 기억력 게임을 20초씩 연속으로! 1분 종합 두뇌 트레이닝.',
+    tip: '‘1분 종합 도전’을 눌러 색깔·암산·기억력 3가지 미니게임을 20초씩 연속으로 플레이하세요.',
+    subj: '두뇌',
+    players: '1명',
+    slug: 'brain-dash',
+    extUrl: 'https://moodoocoding.github.io/261123_brain-dash/',
+    col: 'brain',
+    sortFn: (a, b) => b.score - a.score,
+    fmtScore: r => `${Number(r.score).toLocaleString('ko-KR')}점`
+  },
+  {
+    id: 'block',
+    name: '블록 퍼즐 챔피언',
+    desc: '8×8 보드에 다양한 블록을 빈틈없이 놓아 가로·세로 줄을 시원하게 지우는 두뇌 퍼즐.',
+    tip: '아래 블록 3개를 빈칸에 끌어다 놓아 가로·세로 한 줄을 채우고 최고 점수를 기록하세요.',
+    subj: '두뇌',
+    players: '1명',
+    slug: 'block-puzzle',
+    extUrl: 'https://moodoocoding.github.io/261123_block-puzzle/',
+    col: 'block',
+    sortFn: (a, b) => b.score - a.score || a.t - b.t,
+    fmtScore: r => `${Number(r.score).toLocaleString('ko-KR')}점`
+  },
+  {
+    id: 'swing',
+    name: '휙휙! 로프 스윙',
+    desc: '타이밍에 맞춰 로프를 걸고 반동으로 날아올라 다섯 개의 아슬아슬한 스테이지를 건너가요.',
+    tip: '화면을 누르고 있으면 가까운 고리에 로프가 걸려요. 반동을 얻어 손을 떼며 골인 지점까지 날아가세요!',
+    subj: '액션',
+    players: '1명',
+    slug: 'rope-swing',
+    extUrl: 'https://moodoocoding.github.io/261123_rope-swing/',
+    col: 'swing',
+    sortFn: (a, b) => b.score - a.score || a.t - b.t,
+    fmtScore: r => `${Number(r.score).toLocaleString('ko-KR')}점`
+  },
+  {
+    id: 'beat',
+    name: '비트스매시 클럽',
+    desc: '신나는 음악 비트에 맞춰 떨어지는 노트를 정확한 타이밍에 타격하는 리듬 액션 게임.',
+    tip: '난이도를 고르고 노트가 판정선에 닿을 때 D · F · J · K 키(또는 레인 터치)를 정확히 누르세요.',
+    subj: '액션',
+    players: '1명',
+    slug: 'beat-smash',
+    extUrl: 'https://moodoocoding.github.io/261123_beat-smash/',
+    col: 'beat',
+    sortFn: (a, b) => b.score - a.score || b.combo - a.combo,
+    fmtScore: r => `${Number(r.score).toLocaleString('ko-KR')}점`
+  },
+  {
+    id: 'core',
+    name: '택티컬 코어 디펜스',
+    desc: '사방에서 몰려오는 드론을 격파해 중앙 에너지 코어를 방어하는 10 웨이브 슈팅 액션.',
+    tip: '마우스(또는 터치)와 WASD로 이동·조준해 드론을 격파하고, 웨이브마다 강화 모듈을 고르세요.',
+    subj: '액션',
+    players: '1명',
+    slug: 'core-defense',
+    extUrl: 'https://moodoocoding.github.io/261123_core-defense/',
+    col: 'core',
+    sortFn: (a, b) => b.score - a.score || a.t - b.t,
+    fmtScore: r => `${Number(r.score).toLocaleString('ko-KR')}점`
   }
-  const on = document.body.classList.toggle('qr');
-  $('qrBtn').classList.toggle('on',on); $('qrBtn').textContent = on ? '🎮 이 화면에서 하기' : '📱 내 휴대전화로 하기 (QR)';
+].map(g => ({
+  ...g,
+  url: g.slug ? (IS_GITHUB ? g.extUrl : `./games/${g.slug}/`) : g.extUrl,
+  thumb: `./thumbs/${g.id}.png`
+}));
+
+const $ = id => document.getElementById(id);
+const esc = s => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+
+$('totalTitleCount').textContent = GAMES.length;
+
+const isMultiPlayer = g => g.players.includes('~') || g.players.includes('여럿');
+const isFreeApp = g => !g.col;
+
+const FILTERS = [
+  ['all', '전체', () => true],
+  ['rank', '🏆 랭킹 도전 게임', g => !!g.col],
+  ['free', '✨ 자유 체험 앱', isFreeApp],
+  ['multi', '👫 친구와 함께', isMultiPlayer],
+  ...[...new Set(GAMES.map(g => g.subj))].map(s => [s, s, g => g.subj === s])
+];
+
+let curFilter = 'all';
+let searchQ = '';
+
+function renderFilters() {
+  $('filters').innerHTML = FILTERS.map(([k, label, fn]) =>
+    `<button type="button" class="filter-tab ${k === curFilter ? 'on' : ''}" onclick="setFilter('${k}')">
+      ${label}<span>${GAMES.filter(fn).length}</span>
+    </button>`
+  ).join('');
 }
-// QR을 보는 동안에는 카드를 눌러도 게임으로 넘어가지 않아요
-$('grid').addEventListener('click',e=>{ if(document.body.classList.contains('qr')) e.preventDefault(); });
+
+function setFilter(k) {
+  curFilter = k;
+  renderFilters();
+  applyFilters();
+  try {
+    const url = new URL(location.href);
+    if (k === 'all') url.searchParams.delete('tab');
+    else url.searchParams.set('tab', k);
+    history.replaceState(null, '', url);
+  } catch (e) {}
+}
+
+function onSearch(val) {
+  searchQ = (val || '').trim().toLowerCase();
+  applyFilters();
+}
+
+function applyFilters() {
+  const fn = FILTERS.find(f => f[0] === curFilter)[2];
+  document.querySelectorAll('.game-card').forEach((el, i) => {
+    const g = GAMES[i];
+    const ok = fn(g) && (!searchQ ||
+      g.name.toLowerCase().includes(searchQ) ||
+      g.desc.toLowerCase().includes(searchQ) ||
+      (g.tip && g.tip.toLowerCase().includes(searchQ)) ||
+      g.subj.toLowerCase().includes(searchQ));
+    el.classList.toggle('hide', !ok);
+  });
+}
+
+function fullUrl(u) {
+  try { return new URL(u, location.href).href; } catch (e) { return u; }
+}
+
+$('grid').innerHTML = GAMES.map((g, i) => {
+  const isMulti = isMultiPlayer(g);
+  const st = SUBJ_STYLE[g.subj] || { bg: '#f3f4f6', fg: '#374151' };
+  const numStr = String(i + 1).padStart(2, '0');
+  return `
+    <a class="game-card" href="${g.url}">
+      <div class="thumb-wrap">
+        <div class="thumb-badges">
+          <span class="badge-num">#${numStr}</span>
+          <span class="badge-players ${isMulti ? 'multi' : ''}">${isMulti ? '👫 ' : '👤 '}${g.players}</span>
+        </div>
+        <img src="${g.thumb}" alt="${esc(g.name)} 첫 화면" loading="${i < 8 ? 'eager' : 'lazy'}">
+        <span class="play-hover-pill">바로 시작 ▶</span>
+        <div class="inline-qr-overlay">
+          <div class="inline-qr-box" id="inline-qr-${i}"></div>
+          <span>휴대전화 카메라로 스캔</span>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="card-head-row">
+          <div class="title-group">
+            <span class="subj-chip" style="background:${st.bg};color:${st.fg}">${g.subj}</span>
+            <h2 class="card-title">${g.name}</h2>
+          </div>
+          <button type="button" class="qr-icon-btn" onclick="openQR(event, ${i})" title="QR 코드 보기">QR</button>
+        </div>
+        <p class="card-desc">${g.desc}</p>
+        ${g.tip ? `<div class="card-tip"><b>이렇게 체험해 보세요</b>${g.tip}</div>` : ''}
+        <div class="card-rank-bar" id="rank-bar-${g.id}">
+          ${g.col
+            ? `<span class="rank-who">🏆 오늘의 랭킹 도전 가능</span><span class="rank-val">RANK</span>`
+            : `<span class="rank-who">${g.tagLabel || '✨ 자유 체험 웹앱'}</span><span class="rank-val" style="color:#2563eb">OPEN</span>`
+          }
+        </div>
+      </div>
+    </a>
+  `;
+}).join('');
+
+function openQR(e, i) {
+  e.preventDefault();
+  e.stopPropagation();
+  const g = GAMES[i];
+  $('modalTitle').textContent = g.name;
+  const box = $('modalQRBox');
+  box.innerHTML = '';
+  new QRCode(box, {
+    text: fullUrl(g.url),
+    width: 300,
+    height: 300,
+    colorDark: '#111827',
+    colorLight: '#ffffff',
+    correctLevel: QRCode.CorrectLevel.M
+  });
+  $('qrModal').classList.add('open');
+}
+
+function closeModal() {
+  $('qrModal').classList.remove('open');
+}
+
+let allQrMade = false;
+function toggleAllQR() {
+  if (!allQrMade) {
+    allQrMade = true;
+    GAMES.forEach((g, i) => {
+      new QRCode($('inline-qr-' + i), {
+        text: fullUrl(g.url),
+        width: 240,
+        height: 240,
+        colorDark: '#111827',
+        colorLight: '#ffffff',
+        correctLevel: QRCode.CorrectLevel.M
+      });
+    });
+  }
+  const on = document.body.classList.toggle('qr-all');
+  $('qrModeBtn').classList.toggle('active', on);
+  $('qrModeBtn').innerHTML = on ? '<span>✕</span><span>QR 닫기</span>' : '<span>📱</span><span>전체 QR 코드</span>';
+}
+
 renderFilters();
-try{ const k = localStorage.getItem('booth-home-filter'); if(k && FILTERS.some(f=>f[0]===k)) setFilter(k); }catch(e){}
+try {
+  const initTab = new URLSearchParams(location.search).get('tab');
+  if (initTab && FILTERS.some(f => f[0] === initTab)) {
+    setFilter(initTab);
+  }
+} catch (e) {}
+
+// 실시간 랭킹 연동 (각 게임 카드 하단에 오늘 1위 표시)
+const boards = {};
+let gugudanRows = [];
+
+function updateLiveRanks() {
+  let totalPlays = 0;
+
+  GAMES.forEach(g => {
+    if (!g.col) return;
+    const barEl = $('rank-bar-' + g.id);
+    if (!barEl) return;
+
+    if (g.col === 'gugudan') {
+      totalPlays += gugudanRows.length;
+      if (gugudanRows.length > 0) {
+        const top = gugudanRows[0];
+        barEl.innerHTML = `<span class="rank-who">🥇 1위 <b>${esc(top.nickname)}</b> (${gugudanRows.length}명 도전)</span><span class="rank-val">${g.fmtScore(top)}</span>`;
+      }
+      return;
+    }
+
+    const b = boards[g.col];
+    if (!b) return;
+    let rows = b.today();
+    if (g.filterFn) rows = rows.filter(g.filterFn);
+    totalPlays += rows.length;
+
+    if (rows.length > 0) {
+      const top = [...rows].sort(g.sortFn)[0];
+      barEl.innerHTML = `<span class="rank-who">🥇 1위 <b>${esc(top.name)}</b> (${rows.length}명 도전)</span><span class="rank-val">${g.fmtScore(top)}</span>`;
+    } else {
+      barEl.innerHTML = `<span class="rank-who">🏆 오늘 첫 1등에 도전해 보세요!</span><span class="rank-val">NEW</span>`;
+    }
+  });
+
+  $('todayTotalPlays').textContent = totalPlays.toLocaleString('ko-KR');
+}
+
+if (typeof createBoard === 'function') {
+  GAMES.forEach(g => {
+    if (g.col && g.col !== 'gugudan') {
+      const b = createBoard(g.col);
+      boards[g.col] = b;
+      b.onChange(updateLiveRanks);
+      b.init();
+    }
+  });
+}
+
+async function fetchGugudan() {
+  for (const u of ['./api/gugudan-leaderboard', 'https://261123-gugudan-guardians.vercel.app/api/leaderboard?scope=global&mode=normal&period=today&limit=10']) {
+    try {
+      const r = await fetch(u, { cache: 'no-store' });
+      if (!r.ok) continue;
+      const j = await r.json();
+      if (Array.isArray(j.records)) {
+        gugudanRows = j.records;
+        updateLiveRanks();
+        return;
+      }
+    } catch (e) {}
+  }
+}
+fetchGugudan();
+setInterval(fetchGugudan, 20000);
 </script>
 </body>
 </html>
