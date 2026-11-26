@@ -650,7 +650,7 @@ body.qr-all .inline-qr-overlay {
       <div class="brand-mark">AI</div>
       <div class="brand-titles">
         <span class="brand-sub">2026 충북 AI 페스티벌 · 청주소로초 디지털 마스터</span>
-        <h1 class="brand-main">우리가 만든 AI 웹앱 &amp; 게임 <span id="totalTitleCount">16</span>선</h1>
+        <h1 class="brand-main">우리가 만든 AI 웹앱 &amp; 게임 <span id="totalTitleCount">17</span>선</h1>
       </div>
     </a>
     <div class="header-right">
@@ -711,7 +711,7 @@ const SUBJ_STYLE = {
   '액션': { bg: '#fee2e2', fg: '#dc2626' }
 };
 
-// 16개 웹앱 & 게임 목록 (실제 첫 화면 캡처 썸네일 + 체험 팁 + 실시간 랭킹 연동)
+// 17개 웹앱 & 게임 목록 (실제 첫 화면 캡처 썸네일 + 체험 팁 + 실시간 랭킹 연동)
 const GAMES = [
   {
     id: 'mongle',
@@ -866,6 +866,19 @@ const GAMES = [
     extUrl: 'https://moodoocoding.github.io/261123_brain-dash/',
     col: 'brain',
     sortFn: (a, b) => b.score - a.score,
+    fmtScore: r => `${Number(r.score).toLocaleString('ko-KR')}점`
+  },
+  {
+    id: 'exam',
+    name: '부정행위 하는 학생 찾기',
+    desc: '3D 고사장의 감독관이 되어 교실을 걸어 다니며, 몰래 부정행위를 하는 학생을 가위로 콕 집어 잡아요.',
+    tip: '이름을 적고 시작! WASD·방향키로 순찰하다가 수상한 동작을 하는 순간 그 학생을 눌러 잡으세요. 틀리면 경고!',
+    subj: '두뇌',
+    players: '1명',
+    slug: 'exam-proctor',
+    extUrl: 'https://moodoocoding.github.io/261123_exam-proctor/',
+    col: 'exam',
+    sortFn: (a, b) => b.score - a.score || a.t - b.t,
     fmtScore: r => `${Number(r.score).toLocaleString('ko-KR')}점`
   },
   {
