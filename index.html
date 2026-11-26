@@ -650,7 +650,7 @@ body.qr-all .inline-qr-overlay {
       <div class="brand-mark">AI</div>
       <div class="brand-titles">
         <span class="brand-sub">2026 충북 AI 페스티벌 · 청주소로초 디지털 마스터</span>
-        <h1 class="brand-main">우리가 만든 AI 웹앱 &amp; 게임 <span id="totalTitleCount">17</span>선</h1>
+        <h1 class="brand-main">우리가 만든 AI 웹앱 &amp; 게임 <span id="totalTitleCount">24</span>선</h1>
       </div>
     </a>
     <div class="header-right">
@@ -708,10 +708,11 @@ const SUBJ_STYLE = {
   '사회': { bg: '#d1fae5', fg: '#059669' },
   '퀴즈': { bg: '#fae8ff', fg: '#9333ea' },
   '두뇌': { bg: '#e0e7ff', fg: '#4f46e5' },
-  '액션': { bg: '#fee2e2', fg: '#dc2626' }
+  '액션': { bg: '#fee2e2', fg: '#dc2626' },
+  '생활': { bg: '#ffedd5', fg: '#c2410c' }
 };
 
-// 17개 웹앱 & 게임 목록 (실제 첫 화면 캡처 썸네일 + 체험 팁 + 실시간 랭킹 연동)
+// 24개 웹앱 & 게임 목록 (실제 첫 화면 캡처 썸네일 + 체험 팁 + 실시간 랭킹 연동)
 const GAMES = [
   {
     id: 'mongle',
@@ -814,6 +815,90 @@ const GAMES = [
     extUrl: 'https://moodoocoding.github.io/261123_weather-simulator/',
     col: null,
     tagLabel: '🌤️ 자유 체험 시뮬레이터'
+  },
+  {
+    id: 'spelling',
+    name: '맞춤법 공부 (스나이퍼)',
+    desc: '문장에 어울리는 올바른 맞춤법을 조준해서 쏘는 게임. 헷갈리는 맞춤법 105문제가 들어 있어요.',
+    tip: '난이도와 학년을 고르고 START! 시간 안에 맞는 단어를 눌러 명중시키세요. 틀린 문제는 오답 노트에 모여요.',
+    subj: '국어',
+    players: '1명',
+    slug: 'spelling-sniper',
+    extUrl: 'https://ai-festival-booth.vercel.app/games/spelling-sniper/',
+    col: null,
+    tagLabel: '🎯 맞춤법 105문제 · 오답 노트'
+  },
+  {
+    id: 'korean',
+    name: '우리아이 국어 만점',
+    desc: '한글 따라쓰기, 초성 퀴즈, 줄임말을 바른 우리말로 바꾸기까지 단계별로 배우는 국어 공부 앱.',
+    tip: '1단계(따라쓰기)·2단계(초성 퀴즈)·3단계(바른 말 번역) 중 하나를 골라 5문제씩 풀어 보세요.',
+    subj: '국어',
+    players: '1명',
+    slug: 'korean-master',
+    extUrl: 'https://ai-festival-booth.vercel.app/games/korean-master/',
+    col: null,
+    tagLabel: '📚 한글 따라쓰기 · 초성 퀴즈'
+  },
+  {
+    id: 'cuboid',
+    name: '직육면체 겨냥도 터트리기',
+    desc: '하늘에서 내려오는 도형 중에서 알맞은 직육면체·정육면체 겨냥도만 골라 터트리는 5학년 수학 게임.',
+    tip: '난이도와 인원을 고르고 시작! 화면 아래 기준에 맞는 겨냥도를 눌러 터트리세요. 기준은 1분마다 바뀌어요.',
+    subj: '수학',
+    players: '1~4명',
+    slug: 'cuboid-pop',
+    extUrl: 'https://ai-festival-booth.vercel.app/games/cuboid-pop/',
+    col: null,
+    tagLabel: '🧊 5학년 수학 · 겨냥도'
+  },
+  {
+    id: 'mathquiz',
+    name: '수학 문제 맞추기',
+    desc: '난이도와 학년을 고르면 수학 문제 5개가 나와요. 레버를 당겨 랜덤으로 뽑을 수도 있어요.',
+    tip: 'START를 누르고 난이도와 학년을 고른 뒤 5문제에 도전! 어려우면 힌트를 보고, 틀린 문제는 다시 볼 수 있어요.',
+    subj: '수학',
+    players: '1명',
+    slug: 'math-quiz',
+    extUrl: 'https://ai-festival-booth.vercel.app/games/math-quiz/',
+    col: null,
+    tagLabel: '🧮 학년별 5문제 · 힌트'
+  },
+  {
+    id: 'team',
+    name: '모둠 게임 앱',
+    desc: '밸런스 게임, 상식·넌센스 퀴즈, 그림 일부분 맞히기를 모둠 친구들과 즐기고 벌칙도 뽑아요.',
+    tip: '모둠 정보를 적고(예시 자동 채우기 가능) 게임 시작! 세 가지 게임 중 하나를 골라 함께 대결하세요.',
+    subj: '소통',
+    players: '여럿이 함께',
+    slug: 'team-games',
+    extUrl: 'https://ai-festival-booth.vercel.app/games/team-games/',
+    col: null,
+    tagLabel: '🎲 모둠 놀이 3종 · 벌칙 뽑기'
+  },
+  {
+    id: 'rules',
+    name: '학급 규칙 정하기',
+    desc: '친구들의 의견을 모아 룰렛, 캡슐 뽑기, 행운 카드, 풍선 게임으로 우리 반 규칙을 뽑아요.',
+    tip: '의견을 적어 후보 바구니에 넣고, 뽑는 방법을 고른 뒤 [뽑기!]를 눌러 보세요.',
+    subj: '소통',
+    players: '여럿이 함께',
+    slug: 'class-rules',
+    extUrl: 'https://ai-festival-booth.vercel.app/games/class-rules/',
+    col: null,
+    tagLabel: '🎡 룰렛·캡슐·카드로 규칙 뽑기'
+  },
+  {
+    id: 'lunch',
+    name: '오늘의 급식',
+    desc: '우리 학교를 검색하면 오늘의 급식 메뉴를 귀여운 급식판에 담아 보여 줘요. 색깔도 꾸밀 수 있어요.',
+    tip: '오른쪽 위 ≡ 버튼을 눌러 학교를 검색·선택하면 급식판에 오늘 메뉴가 담겨요. 날짜도 바꿔 보세요.',
+    subj: '생활',
+    players: '1명',
+    slug: 'school-lunch',
+    extUrl: 'https://ai-festival-booth.vercel.app/games/school-lunch/',
+    col: null,
+    tagLabel: '🍱 나이스 급식표 조회'
   },
   {
     id: 'capital',
