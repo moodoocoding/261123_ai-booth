@@ -820,37 +820,40 @@ const GAMES = [
     id: 'spelling',
     name: '맞춤법 공부 (스나이퍼)',
     desc: '문장에 어울리는 올바른 맞춤법을 조준해서 쏘는 게임. 헷갈리는 맞춤법 105문제가 들어 있어요.',
-    tip: '난이도와 학년을 고르고 START! 시간 안에 맞는 단어를 눌러 명중시키세요. 틀린 문제는 오답 노트에 모여요.',
+    tip: '이름을 적고 난이도와 학년을 골라 START! 시간 안에 맞는 단어를 눌러 명중시키세요. 점수가 오늘의 랭킹에 올라가요.',
     subj: '국어',
     players: '1명',
     slug: 'spelling-sniper',
     extUrl: 'https://ai-festival-booth.vercel.app/games/spelling-sniper/',
-    col: null,
-    tagLabel: '🎯 맞춤법 105문제 · 오답 노트'
+    col: 'spell',
+    sortFn: (a, b) => b.score - a.score || a.t - b.t,
+    fmtScore: r => `${Number(r.score).toLocaleString('ko-KR')}점`
   },
   {
     id: 'korean',
     name: '우리아이 국어 만점',
     desc: '한글 따라쓰기, 초성 퀴즈, 줄임말을 바른 우리말로 바꾸기까지 단계별로 배우는 국어 공부 앱.',
-    tip: '1단계(따라쓰기)·2단계(초성 퀴즈)·3단계(바른 말 번역) 중 하나를 골라 5문제씩 풀어 보세요.',
+    tip: '단계별 공부(따라쓰기·초성 퀴즈·바른 말 번역)를 하거나, 이름을 적고 🏆 랭킹전(10문제 빨리 맞히기)에 도전해 보세요.',
     subj: '국어',
     players: '1명',
     slug: 'korean-master',
     extUrl: 'https://ai-festival-booth.vercel.app/games/korean-master/',
-    col: null,
-    tagLabel: '📚 한글 따라쓰기 · 초성 퀴즈'
+    col: 'korean',
+    sortFn: (a, b) => b.score - a.score || a.t - b.t,
+    fmtScore: r => `${Number(r.score).toLocaleString('ko-KR')}점`
   },
   {
     id: 'cuboid',
     name: '직육면체 겨냥도 터트리기',
     desc: '하늘에서 내려오는 도형 중에서 알맞은 직육면체·정육면체 겨냥도만 골라 터트리는 5학년 수학 게임.',
-    tip: '난이도와 인원을 고르고 시작! 화면 아래 기준에 맞는 겨냥도를 눌러 터트리세요. 2~4명은 화면을 나눠 동시에 대결해요.',
+    tip: '난이도와 인원을 고르고 시작! 기준에 맞는 겨냥도를 눌러 터트리세요. 혼자 하면 이름을 적고 오늘의 랭킹에 도전, 2~4명은 화면을 나눠 대결해요.',
     subj: '수학',
     players: '1~4명',
     slug: 'cuboid-pop',
     extUrl: 'https://ai-festival-booth.vercel.app/games/cuboid-pop/',
-    col: null,
-    tagLabel: '🧊 5학년 수학 · 겨냥도'
+    col: 'cuboid',
+    sortFn: (a, b) => b.score - a.score || a.miss - b.miss,
+    fmtScore: r => `${Number(r.score).toLocaleString('ko-KR')}점`
   },
   {
     id: 'mathquiz',
